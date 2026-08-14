@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sithumi &amp; Iminda Wedding Invitation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Playfair+Display:wght@400;600;700&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-fixed-variant": "#474746", "tertiary-container": "#1a1c1a", "secondary": "#735c00",
+          "tertiary-fixed": "#e3e2e0", "background": "#fbf9f9", "surface-tint": "#5f5e5e",
+          "on-tertiary-fixed": "#1a1c1a", "primary-fixed-dim": "#c8c6c5", "on-surface-variant": "#444748",
+          "inverse-on-surface": "#f2f0f0", "on-secondary": "#ffffff", "secondary-fixed-dim": "#e9c349",
+          "on-secondary-container": "#745c00", "secondary-container": "#fed65b", "tertiary": "#000000",
+          "surface-dim": "#dbdad9", "on-secondary-fixed": "#241a00", "error-container": "#ffdad6",
+          "on-primary-fixed": "#1c1b1b", "on-tertiary-container": "#848482", "on-error-container": "#93000a",
+          "error": "#ba1a1a", "on-primary": "#ffffff", "on-error": "#ffffff",
+          "surface-container-lowest": "#ffffff", "surface": "#fbf9f9", "on-secondary-fixed-variant": "#574500",
+          "surface-container-high": "#e9e8e7", "on-surface": "#1b1c1c", "on-background": "#1b1c1c",
+          "tertiary-fixed-dim": "#c7c6c4", "primary-fixed": "#e5e2e1", "on-primary-container": "#858383",
+          "surface-variant": "#e4e2e2", "surface-container-low": "#f5f3f3", "surface-container-highest": "#e4e2e2",
+          "secondary-fixed": "#ffe088", "surface-container": "#efeded", "inverse-primary": "#c8c6c5",
+          "on-tertiary": "#ffffff", "inverse-surface": "#303031", "outline-variant": "#c4c7c7",
+          "surface-bright": "#fbf9f9", "primary": "#000000", "on-tertiary-fixed-variant": "#464745",
+          "primary-container": "#1c1b1b", "outline": "#747878"
+        },
+        borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+        spacing: {
+          gutter: "24px", "margin-desktop": "80px", "margin-mobile": "24px",
+          "section-gap": "120px", "stack-sm": "8px", "stack-md": "16px", "stack-lg": "32px"
+        },
+        fontFamily: {
+          "body-lg": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Playfair Display"],
+          "headline-md": ["Playfair Display"], "display-lg-mobile": ["Playfair Display"],
+          "label-caps": ["Inter"], "display-lg": ["Playfair Display"]
+        },
+        fontSize: {
+          "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "0.01em", fontWeight: "300" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "headline-sm": ["24px", { lineHeight: "32px", fontWeight: "400" }],
+          "headline-md": ["32px", { lineHeight: "40px", fontWeight: "400" }],
+          "display-lg-mobile": ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "400" }],
+          "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.2em", fontWeight: "600" }],
+          "display-lg": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "400" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { min-height: max(884px, 100dvh); }
+
+  .glass-panel {
+    background: rgba(249, 248, 245, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(228, 226, 226, 0.5);
+  }
+  .vellum-overlay {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(251,249,249,0.98) 100%);
+    backdrop-filter: blur(8px);
+  }
+  .smooth-transition { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  /* Feather the illustration's edges so it dissolves into the page background
+     instead of sitting inside a hard-edged frame. */
+  .couple-illustration {
+    display: block;
+    -webkit-mask-image: radial-gradient(ellipse 62% 62% at center, black 40%, transparent 82%);
+    mask-image: radial-gradient(ellipse 62% 62% at center, black 40%, transparent 82%);
+  }
+
+  /* Stylised names: a slow champagne-gold shimmer sweeping across the charcoal type,
+     a soft warm glow, an animated signature underline, and a gentle rise-in on load. */
+  .name-shine {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 0.25em;
+    font-family: 'Great Vibes', 'Playfair Display', cursive;
+    font-weight: 400;
+    font-size: clamp(3rem, 12vw, 5.5rem);
+    line-height: 1.2;
+    letter-spacing: 0.015em;
+    background-image: linear-gradient(115deg, #1b1c1c 0%, #1b1c1c 38%, #a3822c 50%, #1b1c1c 62%, #1b1c1c 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 18px rgba(163, 130, 44, 0.22));
+    animation: name-shine-move 7s ease-in-out infinite;
+  }
+  /* The ampersand as a large, flowing script flourish between the names */
+  .amp-symbol {
+    display: inline-block;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.75rem, 10vw, 4.75rem);
+    line-height: 1;
+    transform: translateY(-0.05em);
+  }
+  @keyframes name-shine-move {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+  .name-shine::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background: linear-gradient(90deg, transparent, #a3822c 50%, transparent);
+    transform: translateX(-50%);
+    animation: underline-grow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--u-delay, 1s);
+  }
+  @keyframes underline-grow {
+    to { width: 72%; }
+  }
+  .name-rise {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    animation: name-rise-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes name-rise-in {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Blooming hearts: small hearts that bud, bloom and drift upward, looping softly
+     behind the hero content. */
+  .bloom-heart {
+    position: absolute;
+    bottom: 0;
+    left: var(--x, 50%);
+    color: var(--hue, #735c00);
+    font-size: var(--size, 16px);
+    opacity: 0;
+    animation: bloom-float var(--dur, 9s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    font-variation-settings: 'FILL' 1, 'wght' 300;
+  }
+  @keyframes bloom-float {
+    0%   { opacity: 0; transform: translateY(0) scale(0.25) rotate(0deg); }
+    14%  { opacity: var(--peak, 0.5); transform: translateY(-28px) scale(1) rotate(-4deg); }
+    78%  { opacity: calc(var(--peak, 0.5) * 0.55); transform: translateY(-200px) scale(1.05) rotate(3deg); }
+    100% { opacity: 0; transform: translateY(-250px) scale(0.85) rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .name-shine, .bloom-heart { animation: none; }
+    .name-shine::after { animation: none; width: 72%; }
+    .name-rise { opacity: 1; transform: none; animation: none; }
+  }
+
+  .unlock-ring { animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(115, 92, 0, 0.2); }
+    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(115, 92, 0, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(115, 92, 0, 0); }
+  }
+
+  /* Minimalist bottom-border form fields per design system */
+  /* Neutralize the Tailwind Forms plugin's default all-side border + blue focus ring
+     so every field in the invitation keeps the minimalist bottom-border look. */
+  input, textarea, select {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  input:focus, textarea:focus, select:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .field-input {
+    width: 100%; background: transparent;
+    border-bottom: 1px solid rgba(27,28,28,0.3) !important;
+    padding: 10px 2px; outline: none; color: #1b1c1c;
+    transition: border-color 0.3s ease;
+  }
+  .field-input:focus { border-bottom-color: #1b1c1c !important; }
+  .field-input::placeholder { color: #74787866; }
+
+  .stepper-input {
+    border-bottom: 1px solid rgba(27,28,28,0.3) !important;
+    padding: 2px 0; text-align: center; background: transparent; color: #1b1c1c;
+  }
+  .stepper-input:focus { border-bottom-color: #1b1c1c !important; }
+
+  .pill-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+  .pill-toggle label {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 10px 18px; border: 1px solid #c4c7c7; border-radius: 9999px;
+    cursor: pointer; transition: all 0.25s ease; user-select: none;
+  }
+  .pill-toggle input:checked + label { background: #000; border-color: #000; color: #fff; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
+    z-index: 200; opacity: 0; pointer-events: none; transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  #unlock-cover.dissolve-out { opacity: 0; transform: translateY(-16px) scale(1.03); pointer-events: none; }
+
+  .nav-active { color: #1b1c1c !important; }
+</style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden overflow-y-hidden selection:bg-secondary-container selection:text-on-secondary-container max-w-[600px] mx-auto shadow-2xl relative" id="page-body">
+
+<!-- Ambient shader background -->
+<div class="fixed inset-0 z-[-10] w-full h-full pointer-events-none opacity-20 max-w-[600px] mx-auto" id="shader-bg-container">
+  <canvas id="shader-canvas" style="display:block;width:100%;height:100%"></canvas>
+</div>
+
+<!-- Top Navigation (Web) -->
+<header class="hidden md:flex justify-between items-center px-margin-desktop h-20 fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-md border-b border-outline-variant/30 max-w-[600px]">
+  <div class="flex items-center gap-4">
+    <button aria-label="Open menu" class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-opacity" id="menu-btn">menu</button>
+  </div>
+  <a class="font-headline-md text-headline-md tracking-widest text-primary font-bold" href="#hero">S &amp; I</a>
+  <div class="flex items-center gap-4">
+    <a aria-label="Go to RSVP" class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-opacity" href="#rsvp">favorite</a>
+  </div>
+</header>
+
+<!-- Navigation Drawer -->
+<aside class="fixed inset-y-0 left-0 w-80 bg-surface z-[60] transform -translate-x-full transition-transform duration-400 ease-in-out shadow-xl flex flex-col py-6 gap-stack-md divide-y divide-outline-variant/20" id="nav-drawer">
+  <div class="font-headline-md text-headline-md text-primary pt-8 px-6 pb-6">Sithumi &amp; Iminda</div>
+  <nav class="flex-1 overflow-y-auto py-4">
+    <ul class="flex flex-col gap-2">
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="hero" href="#hero"><span class="material-symbols-outlined">favorite</span> Welcome</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="ceremony" href="#ceremony"><span class="material-symbols-outlined">event</span> The Ceremony</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="venue" href="#venue"><span class="material-symbols-outlined">flight</span> Venue &amp; Travel</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="rsvp" href="#rsvp"><span class="material-symbols-outlined">send</span> RSVP</a></li>
+    </ul>
+  </nav>
+</aside>
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-sm z-[55] hidden transition-opacity" id="drawer-overlay"></div>
+
+<!-- Main Content -->
+<main class="min-h-screen pt-20 md:pt-32 pb-40 md:pb-32 px-margin-mobile md:px-margin-desktop w-full mx-auto relative z-10">
+
+  <!-- Hero -->
+  <section class="min-h-[85vh] flex flex-col justify-center text-left gap-stack-lg relative mt-8 md:mt-section-gap scroll-mt-24" id="hero">
+
+    <!-- Couple Illustration -->
+    <div class="relative z-10 flex justify-center mb-2">
+      <img alt="Illustration of Sithumi and Iminda" class="couple-illustration w-56 md:w-72 h-auto" src="assets/couple-illustration.webp"/>
+    </div>
+
+    <!-- Names block, with blooming hearts scoped tightly around it -->
+    <div class="relative">
+      <div class="pointer-events-none absolute inset-0 overflow-visible z-0" aria-hidden="true">
+        <span class="material-symbols-outlined bloom-heart" style="--x:6%; --size:15px; --hue:#735c00; --peak:0.45; --dur:10s; --delay:0s;">favorite</span>
+        <span class="material-symbols-outlined bloom-heart" style="--x:22%; --size:11px; --hue:#c98f95; --peak:0.55; --dur:8s; --delay:1.6s;">favorite</span>
+        <span class="material-symbols-outlined bloom-heart" style="--x:50%; --size:18px; --hue:#a3822c; --peak:0.4; --dur:11s; --delay:3.1s;">favorite</span>
+        <span class="material-symbols-outlined bloom-heart" style="--x:68%; --size:12px; --hue:#c98f95; --peak:0.5; --dur:9s; --delay:0.8s;">favorite</span>
+        <span class="material-symbols-outlined bloom-heart" style="--x:84%; --size:16px; --hue:#735c00; --peak:0.4; --dur:10.5s; --delay:4.4s;">favorite</span>
+        <span class="material-symbols-outlined bloom-heart" style="--x:94%; --size:10px; --hue:#c98f95; --peak:0.5; --dur:7.5s; --delay:2.3s;">favorite</span>
+        <span class="material-symbols-outlined bloom-heart" style="--x:36%; --size:13px; --hue:#a3822c; --peak:0.45; --dur:9.5s; --delay:5.6s;">favorite</span>
+      </div>
+
+      <div class="relative z-10 flex items-center justify-center gap-3">
+        <span class="h-px w-6 bg-outline-variant/40"></span>
+        <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.3em] uppercase">With Joyful Hearts</span>
+        <span class="h-px w-6 bg-outline-variant/40"></span>
+      </div>
+      <h1 class="relative z-10 flex flex-col items-center text-center gap-2 mt-8">
+        <span class="name-shine name-rise" style="animation-delay:.15s; --u-delay:.75s;">Sithumi Ahinsa</span>
+        <span class="flex items-center justify-center gap-4 my-1 name-rise" style="animation-delay:.35s;" aria-hidden="false">
+          <svg class="w-8 h-8 md:w-9 md:h-9 text-secondary" fill="none" role="img" aria-label="Wedding rings" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="16" opacity="0.9" r="11" stroke="currentColor" stroke-width="2"></circle>
+            <circle cx="30" cy="16" r="11" stroke="currentColor" stroke-width="2"></circle>
+          </svg>
+          <span class="amp-symbol text-secondary">&amp;</span>
+        </span>
+        <span class="name-shine name-rise" style="animation-delay:.55s; --u-delay:1.15s;">Iminda Sandaruwan</span>
+      </h1>
+
+      <div class="relative z-10 flex items-center justify-center gap-3 mt-4 opacity-70">
+        <span class="h-px w-10 bg-outline-variant/60"></span>
+        <span class="material-symbols-outlined text-secondary text-[14px]">auto_awesome</span>
+        <span class="h-px w-10 bg-outline-variant/60"></span>
+      </div>
+    </div>
+
+    <div class="relative z-10 glass-panel p-8 rounded-2xl mt-16 w-full max-w-sm mx-auto shadow-sm">
+      <div class="font-label-caps text-label-caps text-on-surface-variant mb-2 tracking-widest text-center">Save the Date</div>
+      <div class="font-headline-sm text-headline-sm text-primary mb-6 text-center">2026.11.09</div>
+      <div class="h-px w-16 bg-outline-variant/50 mx-auto mb-6"></div>
+      <div class="font-body-md text-body-md text-on-surface-variant flex flex-col items-center gap-3 text-center mb-6">
+        <span class="material-symbols-outlined text-secondary">location_on</span>
+        <span>Aradhana Hotel, Hikkaduwa</span>
+      </div>
+      <div class="h-px w-16 bg-outline-variant/50 mx-auto mb-6"></div>
+
+      <!-- Countdown -->
+      <div class="grid grid-cols-4 gap-2 mb-6" id="countdown">
+        <div class="flex flex-col items-center">
+          <span class="font-headline-sm text-headline-sm text-primary" id="cd-days">00</span>
+          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Days</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-headline-sm text-headline-sm text-primary" id="cd-hours">00</span>
+          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Hrs</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-headline-sm text-headline-sm text-primary" id="cd-mins">00</span>
+          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Min</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="font-headline-sm text-headline-sm text-primary" id="cd-secs">00</span>
+          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Sec</span>
+        </div>
+      </div>
+
+      <button class="w-full flex items-center justify-center gap-2 border border-secondary/50 text-secondary px-5 py-3 rounded-full font-label-caps text-label-caps tracking-widest uppercase hover:bg-secondary-container/20 transition-colors" id="calendar-btn" type="button">
+        <span class="material-symbols-outlined text-[18px]">event_available</span>
+        Add to Calendar
+      </button>
+    </div>
+  </section>
+
+  <!-- Details Grid -->
+  <section class="mt-section-gap grid grid-cols-1 gap-12 px-2">
+
+    <!-- Poruwa Charithra -->
+    <div class="glass-panel p-10 rounded-3xl flex flex-col justify-center items-center text-center relative overflow-hidden group ml-8 md:ml-0 shadow-md scroll-mt-24" id="ceremony">
+      <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+        <span class="material-symbols-outlined text-6xl">auto_awesome</span>
+      </div>
+      <h2 class="font-headline-md text-headline-md text-primary mb-4">Poruwa Charithra</h2>
+      <div class="font-display-lg-mobile text-display-lg-mobile text-secondary mb-4 drop-shadow-sm font-bold">9:30 AM</div>
+      <div class="inline-flex items-center gap-2 bg-secondary-container/40 text-on-secondary-container px-5 py-2 rounded-full font-label-caps text-label-caps border border-secondary/30 shadow-inner">
+        <span class="material-symbols-outlined text-[16px]">schedule</span>
+        <span class="tracking-wider">Tentative &mdash; Pending Nekath</span>
+      </div>
+    </div>
+
+    <!-- Venue -->
+    <div class="rounded-3xl overflow-hidden relative mr-8 md:mr-0 shadow-lg scroll-mt-24" id="venue">
+      <div class="h-[500px] relative">
+        <img alt="Aradhana Hotel, Hikkaduwa" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgH7GmgPJREF7V_gHWwk0IeI0gydsexkU-xl5NIJdGUJef-CPZYn3su2-JwGQT-PGG6yhYf2-rfc2tiLrIbvwvb5-BHMv-Vuxd9tFscKXPcWyL92k449hnDfA9K3UcEDoR25ERnY5D_oRt9AMXlk-XViN7vY5sbHjt1h7P2vDUzjRtotgy-fEyiUjs6sW-jrB0dwUeBASgEFAktsiOIz5INiLkzVsv3j4n-oqGlhDk8AnjEqvgGc-S"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/20 to-transparent flex flex-col justify-end p-8">
+          <div class="font-headline-sm text-headline-sm text-on-primary mb-2">The Venue</div>
+          <div class="font-body-md text-body-md text-on-primary/90">Aradhana Hotel, Hikkaduwa</div>
+        </div>
+      </div>
+      <div class="glass-panel p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body-md text-body-md text-on-surface-variant text-center sm:text-left">For directions, accommodation or any travel questions, reach out to us directly &mdash; we're happy to help.</p>
+        <a class="shrink-0 inline-flex items-center gap-2 bg-primary text-on-primary px-5 py-3 rounded-full font-label-caps text-label-caps tracking-widest hover:bg-primary/90 transition-colors whitespace-nowrap" href="https://www.google.com/maps/search/?api=1&amp;query=Aradhana+Hotel+Hikkaduwa" rel="noopener" target="_blank">
+          <span class="material-symbols-outlined text-[18px]">directions</span>
+          Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center px-2 border-t border-outline-variant/30 pt-16 scroll-mt-24" id="rsvp">
+    <h2 class="font-headline-md text-headline-md text-primary mb-6">RSVP &amp; Inquiries</h2>
+    <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 font-light">We kindly ask you to confirm your presence to share this joyous occasion with us.</p>
+
+    <form class="flex flex-col gap-stack-lg text-left" id="rsvp-form">
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase block mb-1" for="rsvp-name">Full Name</label>
+        <input class="field-input font-body-md text-body-md" id="rsvp-name" name="name" placeholder="Your name" required type="text"/>
+      </div>
+
+      <div>
+        <span class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase block mb-2">Will you be attending?</span>
+        <div class="flex flex-wrap gap-3 font-label-caps text-label-caps pill-toggle">
+          <input checked="" id="att-yes" name="attending" type="radio" value="Joyfully Accepts"/>
+          <label for="att-yes">Joyfully Accepts</label>
+          <input id="att-maybe" name="attending" type="radio" value="Not Yet Sure"/>
+          <label for="att-maybe">Not Yet Sure</label>
+          <input id="att-no" name="attending" type="radio" value="Regretfully Declines"/>
+          <label for="att-no">Regretfully Declines</label>
+        </div>
+      </div>
+
+      <div class="flex items-end gap-6">
+        <div class="flex-1">
+          <label class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase block mb-1" for="rsvp-guests">Guests (incl. you)</label>
+          <div class="flex items-center gap-3">
+            <button aria-label="Decrease guests" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-high transition-colors" id="guests-minus" type="button">
+              <span class="material-symbols-outlined text-[16px]">remove</span>
+            </button>
+            <input class="stepper-input w-10 font-body-md text-body-md" id="rsvp-guests" max="10" min="1" name="guests" type="number" value="1"/>
+            <button aria-label="Increase guests" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-high transition-colors" id="guests-plus" type="button">
+              <span class="material-symbols-outlined text-[16px]">add</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase block mb-1" for="rsvp-message">Message (optional)</label>
+        <textarea class="field-input font-body-md text-body-md resize-none" id="rsvp-message" name="message" placeholder="A note for the couple..." rows="2"></textarea>
+      </div>
+
+      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-primary text-on-primary px-8 py-4 rounded-full font-label-caps text-label-caps tracking-widest uppercase hover:bg-primary/90 transition-colors" type="submit">
+        <span class="material-symbols-outlined text-[18px]">chat</span>
+        Send RSVP via WhatsApp
+      </button>
+      <p class="font-body-md text-body-md text-on-surface-variant/70 text-center text-sm -mt-2">This opens WhatsApp with your details pre-filled, ready to send to us.</p>
+    </form>
+
+    <div class="h-px w-16 bg-outline-variant/50 mx-auto my-10"></div>
+
+    <div class="flex flex-col items-center justify-center gap-4">
+      <div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Or reach us directly</div>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a class="flex items-center justify-center gap-3 text-primary font-headline-sm text-headline-sm bg-surface-container px-6 py-3 rounded-full hover:bg-surface-container-high transition-colors" href="tel:+94762567546">
+          <span class="material-symbols-outlined">call</span>
+          <span class="text-base md:text-headline-sm">076 256 7546</span>
+        </a>
+        <button class="flex items-center justify-center w-12 h-12 text-on-surface-variant bg-surface-container rounded-full hover:bg-surface-container-high transition-colors" id="copy-phone-btn" title="Copy phone number" type="button">
+          <span class="material-symbols-outlined text-[20px]">content_copy</span>
+        </button>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant/70 text-center max-w-xs mt-2">Your presence is our greatest gift. Thank you for being part of our story.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full max-w-[600px] z-40 pb-safe bg-surface/80 backdrop-blur-lg border-t border-outline-variant/30 flex justify-around items-center h-20 px-4">
+  <a class="bottom-nav-link flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary transition-colors" data-target="hero" href="#hero">
+    <span class="material-symbols-outlined mb-1">auto_stories</span>
+    <span class="font-label-caps text-label-caps text-[10px]">Story</span>
+  </a>
+  <a class="bottom-nav-link flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary transition-colors" data-target="ceremony" href="#ceremony">
+    <span class="material-symbols-outlined mb-1">church</span>
+    <span class="font-label-caps text-label-caps text-[10px]">Ceremony</span>
+  </a>
+  <a class="bottom-nav-link flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary transition-colors" data-target="venue" href="#venue">
+    <span class="material-symbols-outlined mb-1">location_on</span>
+    <span class="font-label-caps text-label-caps text-[10px]">Venue</span>
+  </a>
+  <a class="bottom-nav-link flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary transition-colors" data-target="rsvp" href="#rsvp">
+    <span class="material-symbols-outlined mb-1">mail</span>
+    <span class="font-label-caps text-label-caps text-[10px]">RSVP</span>
+  </a>
+</nav>
+
+<!-- Floating Action Button -->
+<div class="fixed bottom-24 right-6 z-50">
+  <a class="bg-primary text-on-primary shadow-lg rounded-full px-6 py-4 flex items-center gap-3 hover:bg-primary/90 transition-transform transform hover:scale-105" href="#rsvp" id="fab-rsvp">
+    <span class="material-symbols-outlined">edit_calendar</span>
+    <span class="font-label-caps text-label-caps tracking-widest whitespace-nowrap">RSVP NOW</span>
+  </a>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="flex items-center gap-2 bg-primary text-on-primary px-5 py-3 rounded-full shadow-lg font-label-caps text-label-caps">
+    <span class="material-symbols-outlined text-[18px]">check_circle</span>
+    <span id="toast-text">Copied!</span>
+  </div>
+</div>
+
+<!-- Entry Cover Overlay -->
+<div class="fixed inset-0 z-[100] vellum-overlay flex flex-col items-center justify-center smooth-transition" id="unlock-cover">
+  <div class="font-headline-md text-headline-md text-primary mb-3 tracking-widest text-center">
+    S <span class="text-secondary/60">&amp;</span> I
+  </div>
+  <p class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase mb-12">The Wedding Invitation</p>
+  <button class="w-24 h-24 rounded-full border border-secondary/30 flex items-center justify-center group relative cursor-pointer outline-none" id="unlock-btn">
+    <div class="absolute inset-0 rounded-full border border-secondary/50 animate-ping opacity-20 group-hover:opacity-40"></div>
+    <div class="w-16 h-16 rounded-full bg-secondary-container/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110 unlock-ring">
+      <span class="material-symbols-outlined text-secondary">lock_open</span>
+    </div>
+  </button>
+  <div class="font-label-caps text-label-caps text-on-surface-variant mt-8 tracking-widest uppercase">Touch to Unlock</div>
+</div>
+
+<script>
+(function () {
+  /* ---------- Ambient shader background ---------- */
+  function initShader() {
+    const canvas = document.getElementById('shader-canvas');
+    if (!canvas) return;
+    function syncSize() {
+      const w = canvas.clientWidth || 600, h = canvas.clientHeight || 900;
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    }
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(syncSize).observe(canvas);
+    syncSize();
+
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) return;
+    const vs = `attribute vec2 a_position; void main(){ gl_Position = vec4(a_position, 0.0, 1.0); }`;
+    const fs = `precision highp float;
+      uniform float u_time; uniform vec2 u_resolution;
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+        vec3 color1 = vec3(0.1, 0.1, 0.1);
+        vec3 color2 = vec3(0.95, 0.9, 0.8);
+        vec3 color3 = vec3(0.98, 0.98, 0.98);
+        float noise = sin(uv.x * 2.0 + u_time * 0.5) * cos(uv.y * 2.0 + u_time * 0.3);
+        float t = 0.5 + 0.5 * sin(u_time * 0.2 + noise);
+        vec3 finalColor = mix(mix(color1, color2, t), color3, 0.3 * sin(u_time * 0.1));
+        float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+        finalColor += (grain - 0.5) * 0.02;
+        gl_FragColor = vec4(finalColor, 1.0);
+      }`;
+    function compile(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const pos = gl.getAttribLocation(prog, 'a_position');
+    gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uRes = gl.getUniformLocation(prog, 'u_resolution');
+    function render(t) {
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      if (uTime) gl.uniform1f(uTime, t * 0.001);
+      if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(render);
+    }
+    render(0);
+  }
+
+  /* ---------- Unlock cover ---------- */
+  function initUnlock() {
+    const cover = document.getElementById('unlock-cover');
+    const btn = document.getElementById('unlock-btn');
+    const body = document.getElementById('page-body');
+    if (!cover || !btn) return;
+    btn.addEventListener('click', () => {
+      cover.classList.add('dissolve-out');
+      body.classList.remove('overflow-y-hidden');
+      setTimeout(() => { cover.style.display = 'none'; }, 650);
+    });
+  }
+
+  /* ---------- Mobile drawer ---------- */
+  function initDrawer() {
+    const menuBtn = document.getElementById('menu-btn');
+    const drawer = document.getElementById('nav-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    if (!menuBtn || !drawer || !overlay) return;
+    function open() { drawer.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); overlay.classList.add('block'); }
+    function close() { drawer.classList.add('-translate-x-full'); overlay.classList.add('hidden'); overlay.classList.remove('block'); }
+    menuBtn.addEventListener('click', open);
+    overlay.addEventListener('click', close);
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+
+  /* ---------- Active nav highlighting ---------- */
+  function initActiveNav() {
+    const sections = ['hero', 'ceremony', 'venue', 'rsvp'].map(id => document.getElementById(id)).filter(Boolean);
+    const bottomLinks = document.querySelectorAll('.bottom-nav-link');
+    const drawerLinks = document.querySelectorAll('.nav-link');
+    if (!sections.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        bottomLinks.forEach(l => l.classList.toggle('nav-active', l.dataset.target === id));
+        drawerLinks.forEach(l => l.classList.toggle('nav-active', l.dataset.target === id));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    sections.forEach(s => observer.observe(s));
+  }
+
+  /* ---------- Countdown ---------- */
+  function initCountdown() {
+    const target = new Date('2026-11-09T09:30:00+05:30').getTime();
+    const els = {
+      d: document.getElementById('cd-days'), h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'), s: document.getElementById('cd-secs')
+    };
+    if (!els.d) return;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      const diff = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      els.d.textContent = pad(d); els.h.textContent = pad(h);
+      els.m.textContent = pad(m); els.s.textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ---------- Add to calendar (.ics) ---------- */
+  function initCalendar() {
+    const btn = document.getElementById('calendar-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const ics = [
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sithumi and Iminda//Wedding//EN',
+        'BEGIN:VEVENT',
+        'UID:' + stamp + '-sithumi-iminda@wedding',
+        'DTSTAMP:' + stamp,
+        'DTSTART;VALUE=DATE:20261109',
+        'DTEND;VALUE=DATE:20261110',
+        'SUMMARY:Sithumi & Iminda\'s Wedding',
+        'DESCRIPTION:Poruwa Charithra ceremony tentatively at 9:30 AM\\, pending Nekath. Venue: Aradhana Hotel\\, Hikkaduwa.',
+        'LOCATION:Aradhana Hotel\\, Hikkaduwa',
+        'STATUS:TENTATIVE',
+        'END:VEVENT', 'END:VCALENDAR'
+      ].join('\r\n');
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Sithumi-Iminda-Wedding.ics';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Calendar file downloaded');
+    });
+  }
+
+  /* ---------- Toast ---------- */
+  let toastTimer;
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    const text = document.getElementById('toast-text');
+    if (!toast) return;
+    text.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  /* ---------- Copy phone number ---------- */
+  function initCopyPhone() {
+    const btn = document.getElementById('copy-phone-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const number = '0762567546';
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(number).then(() => showToast('Phone number copied')).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy() {
+        const input = document.createElement('textarea');
+        input.value = number;
+        input.style.position = 'fixed'; input.style.opacity = '0';
+        document.body.appendChild(input); input.select();
+        try { document.execCommand('copy'); showToast('Phone number copied'); } catch (e) { showToast('Copy failed — 076 256 7546'); }
+        document.body.removeChild(input);
+      }
+    });
+  }
+
+  /* ---------- Guest stepper ---------- */
+  function initGuestStepper() {
+    const input = document.getElementById('rsvp-guests');
+    const minus = document.getElementById('guests-minus');
+    const plus = document.getElementById('guests-plus');
+    if (!input || !minus || !plus) return;
+    minus.addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value, 10) || 1) - 1); });
+    plus.addEventListener('click', () => { input.value = Math.min(10, (parseInt(input.value, 10) || 1) + 1); });
+  }
+
+  /* ---------- RSVP via WhatsApp ---------- */
+  function initRsvpForm() {
+    const form = document.getElementById('rsvp-form');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('rsvp-name').value.trim();
+      if (!name) { document.getElementById('rsvp-name').focus(); return; }
+      const attending = (form.querySelector('input[name="attending"]:checked') || {}).value || 'Joyfully Accepts';
+      const guests = document.getElementById('rsvp-guests').value || '1';
+      const message = document.getElementById('rsvp-message').value.trim();
+
+      let text = `Hello! This is ${name}, RSVPing for Sithumi & Iminda's wedding.\n${attending}\nGuests: ${guests}`;
+      if (message) text += `\nMessage: ${message}`;
+
+      const phone = '94762567546';
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+      showToast('Opening WhatsApp…');
+    });
+  }
+
+  /* ---------- FAB focuses the name field ---------- */
+  function initFab() {
+    const fab = document.getElementById('fab-rsvp');
+    if (!fab) return;
+    fab.addEventListener('click', () => {
+      setTimeout(() => { const el = document.getElementById('rsvp-name'); if (el) el.focus({ preventScroll: true }); }, 500);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initShader();
+    initUnlock();
+    initDrawer();
+    initActiveNav();
+    initCountdown();
+    initCalendar();
+    initCopyPhone();
+    initGuestStepper();
+    initRsvpForm();
+    initFab();
+  });
+})();
+</script>
+</body>
+</html>
