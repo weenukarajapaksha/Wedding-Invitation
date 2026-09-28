@@ -92,6 +92,14 @@ to compete with the hero wreath and to wash out the small uppercase labels and
 the form placeholders in the RSVP section. At `0.2` it reads as a soft tint and
 everything stays legible without needing panels behind the text.
 
+Its height is pinned with `100lvh`, not stretched between `top` and `bottom`.
+On a phone the address bar collapses as you scroll, which changes the viewport
+height; a layer that tracks it gets re-scaled by `background-size: cover`, and
+that reads as the background drifting while you scroll. `100lvh` ignores the
+address bar. `initBackdropLock()` does the same job in pixels for browsers
+without that unit, and holds the height when the bar or the keyboard changes the
+viewport, re-measuring only on a real rotation.
+
 The image is supplied twice. AVIF is smaller, but iOS Safari before 16.4 cannot
 display it, so a JPEG is declared first and the AVIF upgrade is applied only
 where `image-set()` is understood. If you replace the backdrop, replace both

@@ -82,6 +82,13 @@
     background-position: center top;
     background-repeat: no-repeat;
     opacity: 0.2;
+    /* Height is pinned to the LARGE viewport rather than stretched between
+       top and bottom. On a phone the address bar collapses as you scroll, which
+       changes the viewport height; a layer that tracks it gets re-scaled by
+       background-size: cover, and that reads as the background drifting.
+       100lvh ignores the address bar, so the photo stays put. */
+    height: 100vh; /* fallback for browsers without viewport units v2 */
+    height: 100lvh;
   }
 
   .glass-panel {
@@ -351,7 +358,7 @@
 
 <!-- Photographic backdrop, scoped to the centred invitation column (same width
      as the shader layer below) so it does not bleed into the page margins -->
-<div aria-hidden="true" class="fixed inset-0 z-[-9] w-full h-full max-w-[600px] mx-auto pointer-events-none" id="page-bg"></div>
+<div aria-hidden="true" class="fixed top-0 left-0 right-0 z-[-9] w-full max-w-[600px] mx-auto pointer-events-none" id="page-bg"></div>
 
 <!-- Ambient shader background -->
 <div class="fixed inset-0 z-[-10] w-full h-full pointer-events-none opacity-20 max-w-[600px] mx-auto" id="shader-bg-container">
@@ -752,6 +759,35 @@
     return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   }
 
+  /* ---------- Backdrop height lock (fallback) ----------
+     The CSS pins the backdrop with 100lvh, which ignores a phone's collapsing
+     address bar. Browsers without that unit fall back to 100vh, which does
+     track the address bar, so the photo re-scales as you scroll. For those,
+     pin the height in pixels to the tallest viewport seen, and only re-measure
+     on a real rotation rather than on the bar sliding away or the keyboard
+     opening. */
+  function initBackdropLock() {
+    const bg = document.getElementById('page-bg');
+    if (!bg) return;
+    if (window.CSS && CSS.supports && CSS.supports('height', '100lvh')) return; // CSS already handles it
+    let tallest = window.innerHeight;
+    let lockedWidth = window.innerWidth;
+    function lock() { bg.style.height = tallest + 'px'; }
+    lock();
+    window.addEventListener('resize', () => {
+      if (Math.abs(window.innerWidth - lockedWidth) > 40) {
+        // Rotation or a genuinely different screen: start measuring again.
+        lockedWidth = window.innerWidth;
+        tallest = window.innerHeight;
+      } else if (window.innerHeight > tallest) {
+        tallest = window.innerHeight; // address bar collapsed, grow once
+      } else {
+        return; // address bar reappeared or keyboard opened: hold the height
+      }
+      lock();
+    });
+  }
+
   /* ---------- Scroll reveal ---------- */
   function initReveals() {
     const els = document.querySelectorAll('.reveal');
@@ -989,6 +1025,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     initShader();
+    initBackdropLock();
     initHeroLotties();
     initUnlock();
     initDrawer();
