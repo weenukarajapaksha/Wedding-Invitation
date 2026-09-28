@@ -670,14 +670,6 @@
   </a>
 </nav>
 
-<!-- Floating Action Button -->
-<div class="fixed bottom-24 right-6 z-50">
-  <a class="bg-primary text-on-primary shadow-lg rounded-full px-6 py-4 flex items-center gap-3 hover:bg-primary/90 transition-transform transform hover:scale-105" href="#rsvp" id="fab-rsvp">
-    <span class="material-symbols-outlined">edit_calendar</span>
-    <span class="font-label-caps text-label-caps tracking-widest whitespace-nowrap">RSVP NOW</span>
-  </a>
-</div>
-
 <!-- Toast -->
 <div class="toast" id="toast">
   <div class="flex items-center gap-2 bg-primary text-on-primary px-5 py-3 rounded-full shadow-lg font-label-caps text-label-caps">
@@ -972,15 +964,6 @@
     });
   }
 
-  /* ---------- FAB focuses the name field ---------- */
-  function initFab() {
-    const fab = document.getElementById('fab-rsvp');
-    if (!fab) return;
-    fab.addEventListener('click', () => {
-      setTimeout(() => { const el = document.getElementById('rsvp-name'); if (el) el.focus({ preventScroll: true }); }, 500);
-    });
-  }
-
   /* ---------- Hero animations ---------- */
   function initHeroLotties() {
     // Both animations loop continuously, so hold them still on the last frame
@@ -1015,7 +998,6 @@
     initCopyPhone();
     initGuestStepper();
     initRsvpForm();
-    initFab();
   });
 })();
 </script>

@@ -54,7 +54,15 @@ node inline-animations.js
 The two animations are sized relative to each other in CSS: `.couple-stage` is a
 square, the wreath fills it, and `.couple-lottie` sits at 40% so the couple stays
 clear of the wreath's inner edge. If you swap either file for art with different
-proportions, that 40% is the number to adjust. The stage itself is deliberately
+proportions, that 40% is the number to adjust.
+
+`.couple-lottie` also carries `transform: translateX(2.6%)`. The wreath artwork
+is not drawn centred inside its own square; its visual centre sits about 1% to
+the right. Without the nudge a perfectly centred couple reads as sitting slightly
+left inside the wreath. With it, the two art centres line up to within a tenth of
+a pixel. Re-measure this if you swap the wreath for different art.
+
+The stage itself is deliberately
 wider than the page gutters, via the negative margins on its wrapper, so the
 wreath reads large; the wreath art has transparent padding built in, so it stays
 on screen.
