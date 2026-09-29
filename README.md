@@ -23,49 +23,46 @@ Just open `index.html` in a browser (double-click it, or drag it into a browser 
 ```
 .
 ├── index.html                     # the entire site (one page)
-├── inline-animations.js           # maintenance script, see below
 ├── assets/
-│   ├── couple-animation.lottie    # bride and groom, source file
-│   ├── backdrop-animation.lottie  # floral wreath behind them, source file
-│   ├── animations.js              # both of the above, base-64 inlined
+│   ├── hero-video.mp4             # the hero video
 │   ├── venue.jpg                  # photo in the "Venue" section
-│   ├── page-background.avif       # full-page backdrop photo
+│   ├── page-background.avif       # page backdrop photo
 │   ├── page-background.jpg        # same image, fallback for browsers without AVIF
+│   ├── couple-animation.lottie    # UNUSED, replaced by the hero video
+│   ├── backdrop-animation.lottie  # UNUSED, replaced by the hero video
+│   ├── animations.js              # UNUSED, inlined copies of the two above
 │   └── couple-illustration.webp   # UNUSED, left over from the old static hero
 └── README.md
 ```
 
-### Why the animations exist twice
+### The hero video
 
-The hero stacks two dotLottie animations: a floral wreath that draws itself on,
-with the couple standing inside its opening. Browsers refuse to fetch a local
-file from a page opened with `file://`, so plain `.lottie` references show
-nothing when you double-click `index.html`. Both animations are therefore also
-inlined as base-64 in `assets/animations.js`, which the page prefers. The
-`.lottie` files are kept as the editable sources.
+`assets/hero-video.mp4` is 1280x720, ten seconds, 2.5 MB. It replaced a pair of
+dotLottie animations, so the Lottie player and its CDN script are gone.
 
-To swap in a different animation, replace the `.lottie` file and regenerate the
-inlined copies from the project root:
+It carries `muted` and `playsinline` as well as `autoplay`. All three are
+required: phones refuse to autoplay a video that is not muted, and iOS will
+otherwise take it fullscreen instead of playing it inline. The file has an audio
+track, which is silenced by `muted`.
 
-```bash
-node inline-animations.js
-```
+The frame spans the full page width. The negative margins on its wrapper cancel
+the page gutters exactly, so it reaches the screen edges without going past them.
 
-The two animations are sized relative to each other in CSS: `.couple-stage` is a
-square, the wreath fills it, and `.couple-lottie` sits at 40% so the couple stays
-clear of the wreath's inner edge. If you swap either file for art with different
-proportions, that 40% is the number to adjust.
+The frame is deliberately 3:2, taller than the video's own 16:9. `object-fit:
+cover` then scales the footage to fill that height, which enlarges the couple and
+crops only the left and right edges, about 8% from each side and nothing from top
+or bottom. `object-position` stays at the default centre, so the couple stays
+centred. Change the `aspect-ratio` on `.hero-video-frame` to adjust how much is
+cropped: closer to 16/9 crops less, closer to 1/1 crops more.
 
-`.couple-lottie` also carries `transform: translateX(2.6%)`. The wreath artwork
-is not drawn centred inside its own square; its visual centre sits about 1% to
-the right. Without the nudge a perfectly centred couple reads as sitting slightly
-left inside the wreath. With it, the two art centres line up to within a tenth of
-a pixel. Re-measure this if you swap the wreath for different art.
-
-The stage itself is deliberately
-wider than the page gutters, via the negative margins on its wrapper, so the
-wreath reads large; the wreath art has transparent padding built in, so it stays
-on screen.
+The edges are feathered so the video dissolves into the page rather than sitting
+in a hard rectangle. That is done with two separate masks, one fading left and
+right on the frame and one fading top and bottom on the video. Nested masks
+multiply, so this softens all four sides using only single-gradient masks.
+Doing it in a single declaration would need `mask-composite`, whose browser
+support is far patchier. The vertical percentages are larger than the horizontal
+ones because the frame is much wider than it is tall; that keeps the feather
+roughly even in actual pixels.
 
 ## Features
 

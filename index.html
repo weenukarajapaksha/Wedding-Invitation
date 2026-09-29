@@ -108,7 +108,10 @@
        because unlike the old artwork the video has no transparent padding:
        anything past the screen edge would be cropped away by object-fit. */
     width: min(640px, 100%);
-    aspect-ratio: 16 / 9;
+    /* Taller than the video's own 16:9. object-fit: cover then scales the
+       footage to fill the height, which enlarges it and crops only the left and
+       right edges. object-position stays centred, so the couple stays centred. */
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     /* Feather the left and right edges. The vertical fade lives on the video
        itself below: nested masks multiply, which gives a soft edge on all four
