@@ -30,6 +30,11 @@
           "secondary-fixed": "#ffe088", "surface-container": "#efeded", "inverse-primary": "#c8c6c5",
           "on-tertiary": "#ffffff", "inverse-surface": "#303031", "outline-variant": "#c4c7c7",
           "surface-bright": "#fbf9f9", "primary": "#000000", "on-tertiary-fixed-variant": "#464745",
+          // Gold accents. "gold" is for large type and rules only: against the
+          // page it sits at about 3:1, which passes for large text but not for
+          // small. "gold-deep" is the one to use for small labels and for
+          // button fills, where it reaches 5.3:1 and 6.4:1 respectively.
+          "gold": "#a3822c", "gold-deep": "#735c00", "gold-light": "#c9a227",
           "primary-container": "#1c1b1b", "outline": "#747878"
         },
         borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
@@ -92,7 +97,7 @@
     background: rgba(249, 248, 245, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(228, 226, 226, 0.5);
+    border: 1px solid rgba(163, 130, 44, 0.28); /* gold hairline */
   }
   .vellum-overlay {
     background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(251,249,249,0.98) 100%);
@@ -168,7 +173,7 @@
     font-weight: 500;
     letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: rgba(68, 71, 72, 0.6);
+    color: #735c00;
     padding-left: 0.34em; /* optically re-centre against the trailing letter-space */
   }
   .lineage-name {
@@ -336,7 +341,7 @@
     padding: 10px 18px; border: 1px solid #c4c7c7; border-radius: 9999px;
     cursor: pointer; transition: all 0.25s ease; user-select: none;
   }
-  .pill-toggle input:checked + label { background: #000; border-color: #000; color: #fff; }
+  .pill-toggle input:checked + label { background: #735c00; border-color: #735c00; color: #fff; }
 
   .toast {
     position: fixed; left: 50%; bottom: 110px; transform: translateX(-50%) translateY(20px);
@@ -346,7 +351,7 @@
 
   #unlock-cover.dissolve-out { opacity: 0; transform: translateY(-16px) scale(1.03); pointer-events: none; }
 
-  .nav-active { color: #1b1c1c !important; }
+  .nav-active { color: #735c00 !important; }
 </style>
 </head>
 <body class="bg-background text-on-surface antialiased overflow-x-hidden overflow-y-hidden selection:bg-secondary-container selection:text-on-secondary-container max-w-[600px] mx-auto shadow-2xl relative" id="page-body">
@@ -419,9 +424,9 @@
       </div>
 
       <div class="relative z-10 flex items-center justify-center gap-3">
-        <span class="h-px w-6 bg-outline-variant/40"></span>
-        <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.3em] uppercase">With Joyful Hearts</span>
-        <span class="h-px w-6 bg-outline-variant/40"></span>
+        <span class="h-px w-6 bg-gold/50"></span>
+        <span class="font-label-caps text-label-caps text-gold-deep tracking-[0.3em] uppercase">With Joyful Hearts</span>
+        <span class="h-px w-6 bg-gold/50"></span>
       </div>
       <!-- Each name sits directly beneath its own lineage line, as on the card -->
       <h1 class="relative z-10 flex flex-col items-center text-center mt-10">
@@ -445,9 +450,9 @@
       </h1>
 
       <div class="relative z-10 flex items-center justify-center gap-3 mt-4 opacity-70">
-        <span class="h-px w-10 bg-outline-variant/60"></span>
-        <span class="material-symbols-outlined text-secondary text-[14px]">auto_awesome</span>
-        <span class="h-px w-10 bg-outline-variant/60"></span>
+        <span class="h-px w-10 bg-gold/55"></span>
+        <span class="material-symbols-outlined text-gold text-[14px]">auto_awesome</span>
+        <span class="h-px w-10 bg-gold/55"></span>
       </div>
 
       <p class="invite-line relative z-10 mt-7 text-center max-w-sm mx-auto">
@@ -456,33 +461,33 @@
     </div>
 
     <div class="reveal relative z-10 glass-panel p-8 rounded-2xl mt-16 w-full max-w-sm mx-auto shadow-sm">
-      <div class="font-label-caps text-label-caps text-on-surface-variant mb-2 tracking-widest text-center">Save the Date</div>
-      <div class="font-headline-sm text-headline-sm text-primary text-center">2026.11.16</div>
+      <div class="font-label-caps text-label-caps text-gold-deep mb-2 tracking-widest text-center">Save the Date</div>
+      <div class="font-headline-sm text-headline-sm text-gold text-center">2026.11.16</div>
       <div class="font-body-md text-body-md text-on-surface-variant text-center mt-1 mb-6">Monday &middot; 8.30 AM &ndash; 3.30 PM</div>
-      <div class="h-px w-16 bg-outline-variant/50 mx-auto mb-6"></div>
+      <div class="h-px w-16 bg-gold/45 mx-auto mb-6"></div>
       <div class="font-body-md text-body-md text-on-surface-variant flex flex-col items-center gap-3 text-center mb-6">
-        <span class="material-symbols-outlined text-secondary">location_on</span>
+        <span class="material-symbols-outlined text-gold">location_on</span>
         <span>Hotel Grand Palace, Hikkaduwa</span>
       </div>
-      <div class="h-px w-16 bg-outline-variant/50 mx-auto mb-6"></div>
+      <div class="h-px w-16 bg-gold/45 mx-auto mb-6"></div>
 
       <!-- Countdown -->
       <div class="grid grid-cols-4 gap-2 mb-6" id="countdown">
         <div class="flex flex-col items-center">
-          <span class="font-headline-sm text-headline-sm text-primary" id="cd-days">00</span>
-          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Days</span>
+          <span class="font-headline-sm text-headline-sm text-gold" id="cd-days">00</span>
+          <span class="font-label-caps text-label-caps text-gold-deep/80 uppercase mt-1">Days</span>
         </div>
         <div class="flex flex-col items-center">
-          <span class="font-headline-sm text-headline-sm text-primary" id="cd-hours">00</span>
-          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Hrs</span>
+          <span class="font-headline-sm text-headline-sm text-gold" id="cd-hours">00</span>
+          <span class="font-label-caps text-label-caps text-gold-deep/80 uppercase mt-1">Hrs</span>
         </div>
         <div class="flex flex-col items-center">
-          <span class="font-headline-sm text-headline-sm text-primary" id="cd-mins">00</span>
-          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Min</span>
+          <span class="font-headline-sm text-headline-sm text-gold" id="cd-mins">00</span>
+          <span class="font-label-caps text-label-caps text-gold-deep/80 uppercase mt-1">Min</span>
         </div>
         <div class="flex flex-col items-center">
-          <span class="font-headline-sm text-headline-sm text-primary" id="cd-secs">00</span>
-          <span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase mt-1">Sec</span>
+          <span class="font-headline-sm text-headline-sm text-gold" id="cd-secs">00</span>
+          <span class="font-label-caps text-label-caps text-gold-deep/80 uppercase mt-1">Sec</span>
         </div>
       </div>
 
@@ -501,7 +506,7 @@
       <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
         <span class="material-symbols-outlined text-6xl">auto_awesome</span>
       </div>
-      <h2 class="font-headline-md text-headline-md text-primary mb-4">Poruwa Charithra</h2>
+      <h2 class="font-headline-md text-headline-md text-gold mb-4">Poruwa Charithra</h2>
       <div class="font-display-lg-mobile text-display-lg-mobile text-secondary mb-4 drop-shadow-sm font-bold">8:30 AM</div>
       <div class="inline-flex items-center gap-2 bg-secondary-container/40 text-on-secondary-container px-5 py-2 rounded-full font-label-caps text-label-caps border border-secondary/30 shadow-inner">
         <span class="material-symbols-outlined text-[16px]">schedule</span>
@@ -533,8 +538,8 @@
   </section>
 
   <!-- RSVP -->
-  <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center px-2 border-t border-outline-variant/30 pt-16 scroll-mt-24" id="rsvp">
-    <h2 class="reveal font-headline-md text-headline-md text-primary mb-6">RSVP &amp; Inquiries</h2>
+  <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center px-2 border-t border-gold/35 pt-16 scroll-mt-24" id="rsvp">
+    <h2 class="reveal font-headline-md text-headline-md text-gold mb-6">RSVP &amp; Inquiries</h2>
     <p class="reveal font-body-lg text-body-lg text-on-surface-variant mb-10 font-light" style="--reveal-delay:.1s;">We kindly ask you to confirm your presence to share this joyous occasion with us.</p>
 
     <form class="reveal flex flex-col gap-stack-lg text-left" id="rsvp-form" style="--reveal-delay:.2s;">
@@ -559,11 +564,11 @@
         <div class="flex-1">
           <label class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase block mb-1" for="rsvp-guests">Guests (incl. you)</label>
           <div class="flex items-center gap-3">
-            <button aria-label="Decrease guests" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-high transition-colors" id="guests-minus" type="button">
+            <button aria-label="Decrease guests" class="w-8 h-8 rounded-full border border-gold/45 text-gold-deep flex items-center justify-center hover:bg-secondary-container/20 transition-colors" id="guests-minus" type="button">
               <span class="material-symbols-outlined text-[16px]">remove</span>
             </button>
             <input class="stepper-input w-10 font-body-md text-body-md" id="rsvp-guests" max="10" min="1" name="guests" type="number" value="1"/>
-            <button aria-label="Increase guests" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-high transition-colors" id="guests-plus" type="button">
+            <button aria-label="Increase guests" class="w-8 h-8 rounded-full border border-gold/45 text-gold-deep flex items-center justify-center hover:bg-secondary-container/20 transition-colors" id="guests-plus" type="button">
               <span class="material-symbols-outlined text-[16px]">add</span>
             </button>
           </div>
@@ -585,17 +590,17 @@
         <textarea class="field-input font-body-md text-body-md resize-none" id="rsvp-message" name="message" placeholder="A note for the couple..." rows="2"></textarea>
       </div>
 
-      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-primary text-on-primary px-8 py-4 rounded-full font-label-caps text-label-caps tracking-widest uppercase hover:bg-primary/90 transition-colors" type="submit">
+      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-gold-deep text-white px-8 py-4 rounded-full font-label-caps text-label-caps tracking-widest uppercase hover:bg-gold-deep/90 transition-colors" type="submit">
         <span class="material-symbols-outlined text-[18px]">chat</span>
         Send RSVP via WhatsApp
       </button>
       <p class="font-body-md text-body-md text-on-surface-variant/70 text-center text-sm -mt-2">This opens WhatsApp with your details pre-filled, ready to send to us.</p>
     </form>
 
-    <div class="reveal h-px w-16 bg-outline-variant/50 mx-auto my-10"></div>
+    <div class="reveal h-px w-16 bg-gold/45 mx-auto my-10"></div>
 
     <div class="reveal flex flex-col items-center justify-center gap-4" style="--reveal-delay:.1s;">
-      <div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Or reach us directly</div>
+      <div class="font-label-caps text-label-caps text-gold-deep tracking-widest uppercase">Or reach us directly</div>
       <div class="flex flex-col items-stretch gap-3 w-full max-w-xs">
 
         <div class="flex items-center gap-2">
