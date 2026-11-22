@@ -276,6 +276,80 @@
     .card-lift:hover { transform: translateY(-6px); }
   }
 
+  /* ---------- Gallery ----------
+     An editorial grid on six columns: the one landscape photo runs full width,
+     then two portraits, then three. Every tile keeps a fixed aspect ratio, so
+     the rows line up whatever the photos' exact sizes. object-position leans
+     upward because the faces sit in the top third of these portraits. */
+  /* minmax(0, 1fr), not plain 1fr: a plain 1fr track will not shrink below
+     its content, and the photos are over 1000px wide, so the grid would burst
+     out of the column on a phone. */
+  .gallery-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+  .gallery-tile {
+    position: relative; display: block; width: 100%; min-width: 0; padding: 0;
+    overflow: hidden; border-radius: 14px; cursor: zoom-in;
+    background: #dcd8cf; /* shown while the photo loads */
+    box-shadow: 0 6px 22px rgba(27, 28, 28, 0.10);
+    outline: 1px solid rgba(163, 130, 44, 0.22); outline-offset: -1px;
+  }
+  .gallery-tile:focus-visible { outline: 2px solid #735c00; outline-offset: 2px; }
+  .gallery-tile img {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 28%;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tile-wide  { grid-column: span 6; aspect-ratio: 3 / 2; }
+  .tile-half  { grid-column: span 3; aspect-ratio: 4 / 5; }
+  .tile-third { grid-column: span 2; aspect-ratio: 2 / 3; }
+  @media (hover: hover) {
+    .gallery-tile:hover img { transform: scale(1.05); }
+  }
+
+  /* Full-screen viewer. Sits under the unlock cover (z 100) but above every
+     other layer, including the bottom navigation. */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 90;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(18, 17, 15, 0.94);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .lightbox.open { opacity: 1; visibility: visible; transition: opacity 0.35s ease; }
+  .lightbox-img {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 140px);  /* fallback for browsers without dvh */
+    max-height: calc(100dvh - 140px);
+    border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    user-select: none; -webkit-user-drag: none;
+    transition: opacity 0.25s ease;
+  }
+  .lightbox-img.swapping { opacity: 0; }
+  .lightbox-btn {
+    position: absolute; display: flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 9999px;
+    color: #f2f0f0; background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(201, 162, 39, 0.35);
+    transition: background 0.25s ease;
+  }
+  .lightbox-btn:hover { background: rgba(255, 255, 255, 0.16); }
+  .lightbox-btn:focus-visible { outline: 2px solid #c9a227; outline-offset: 2px; }
+  .lightbox-close { top: 16px; right: 16px; }
+  .lightbox-prev  { left: 12px;  top: 50%; transform: translateY(-50%); }
+  .lightbox-next  { right: 12px; top: 50%; transform: translateY(-50%); }
+  /* On a phone the arrows would cover the photo, so they drop to the bottom
+     either side of the counter; swiping works as well. */
+  @media (max-width: 640px) {
+    .lightbox-prev, .lightbox-next { top: auto; bottom: 20px; transform: none; }
+    .lightbox-prev { left: calc(50% - 110px); }
+    .lightbox-next { right: calc(50% - 110px); }
+  }
+  .lightbox-counter {
+    position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
+    color: rgba(242, 240, 240, 0.75);
+    font: 500 12px/1 'Inter', sans-serif; letter-spacing: 0.3em;
+  }
+  @media (min-width: 641px) { .lightbox-counter { bottom: 24px; } }
+
   /* Blooming hearts: small hearts that bud, bloom and drift upward, looping softly
      behind the hero content. */
   .bloom-heart {
@@ -302,6 +376,8 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     .card-lift:hover { transform: none; }
     .unlock-ring { animation: none; }
+    .gallery-tile img, .lightbox, .lightbox-img { transition: none; }
+    .gallery-tile:hover img { transform: none; }
   }
 
   .unlock-ring { animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
@@ -382,6 +458,7 @@
       <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="hero" href="#hero"><span class="material-symbols-outlined">favorite</span> Welcome</a></li>
       <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="ceremony" href="#ceremony"><span class="material-symbols-outlined">event</span> The Ceremony</a></li>
       <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="venue" href="#venue"><span class="material-symbols-outlined">flight</span> Venue &amp; Travel</a></li>
+      <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="gallery" href="#gallery"><span class="material-symbols-outlined">photo_library</span> Gallery</a></li>
       <li><a class="nav-link flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-xl transition-colors font-body-lg text-body-lg" data-target="rsvp" href="#rsvp"><span class="material-symbols-outlined">send</span> RSVP</a></li>
     </ul>
   </nav>
@@ -540,12 +617,57 @@
     </div>
   </section>
 
+  <!-- Gallery. Each tile is a button that opens the photo full screen. The
+       order here is the order the viewer steps through. To add a photo, put it
+       in assets/gallery/ and add a tile; tile-wide suits landscape shots,
+       tile-half and tile-third suit portraits. -->
+  <section class="mt-section-gap scroll-mt-24" id="gallery">
+    <div class="reveal text-center mb-10">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="h-px w-6 bg-gold/50"></span>
+        <span class="font-label-caps text-label-caps text-gold-deep tracking-[0.3em] uppercase">Our Moments</span>
+        <span class="h-px w-6 bg-gold/50"></span>
+      </div>
+      <h2 class="font-headline-md text-headline-md text-gold">Gallery</h2>
+      <p class="invite-line mt-3 max-w-sm mx-auto">A few frames from the days before forever.</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <button class="reveal gallery-tile tile-wide" type="button" aria-label="Open photo 1 of 6">
+        <img alt="Ahinsa and Iminda hand in hand on the grass beside a lake, trees behind them" decoding="async" loading="lazy" src="assets/gallery/gallery-01.jpg"/>
+      </button>
+      <button class="reveal gallery-tile tile-half" type="button" aria-label="Open photo 2 of 6">
+        <img alt="Iminda leaning on a railing with Ahinsa's hand on his shoulder" decoding="async" loading="lazy" src="assets/gallery/gallery-02.jpg"/>
+      </button>
+      <button class="reveal gallery-tile tile-half" type="button" aria-label="Open photo 3 of 6" style="--reveal-delay:.1s;">
+        <img alt="The couple standing at the water's edge, reflected in the lake" decoding="async" loading="lazy" src="assets/gallery/gallery-03.jpg"/>
+      </button>
+      <button class="reveal gallery-tile tile-third" type="button" aria-label="Open photo 4 of 6">
+        <img alt="Iminda holding Ahinsa from behind as she carries a basket of fruit" decoding="async" loading="lazy" src="assets/gallery/gallery-04.jpg"/>
+      </button>
+      <button class="reveal gallery-tile tile-third" type="button" aria-label="Open photo 5 of 6" style="--reveal-delay:.1s;">
+        <img alt="Ahinsa playing the violin beside Iminda on the grass, a rabbit at her side" decoding="async" loading="lazy" src="assets/gallery/gallery-05.jpg"/>
+      </button>
+      <button class="reveal gallery-tile tile-third" type="button" aria-label="Open photo 6 of 6" style="--reveal-delay:.2s;">
+        <img alt="Ahinsa in her red and white gown on the lawn" decoding="async" loading="lazy" src="assets/gallery/gallery-06.jpg"/>
+      </button>
+    </div>
+  </section>
+
   <!-- RSVP -->
   <section class="mt-section-gap mb-section-gap max-w-lg mx-auto text-center px-2 border-t border-gold/35 pt-16 scroll-mt-24" id="rsvp">
     <h2 class="reveal font-headline-md text-headline-md text-gold mb-6">RSVP &amp; Inquiries</h2>
     <p class="reveal font-body-lg text-body-lg text-on-surface-variant mb-10 font-light" style="--reveal-delay:.1s;">We kindly ask you to confirm your presence to share this joyous occasion with us.</p>
 
     <form class="reveal flex flex-col gap-stack-lg text-left" id="rsvp-form" style="--reveal-delay:.2s;">
+      <!-- Honeypot. Hidden from guests, but bots fill every field they find.
+           _gotcha is Formspree's own trap name, so it is discarded server-side
+           as well as here. -->
+      <div aria-hidden="true" class="hidden">
+        <label for="rsvp-website">Leave this field empty</label>
+        <input autocomplete="off" id="rsvp-website" name="_gotcha" tabindex="-1" type="text"/>
+      </div>
+
       <div>
         <label class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase block mb-1" for="rsvp-name">Full Name</label>
         <input class="field-input font-body-md text-body-md" id="rsvp-name" name="name" placeholder="Your name" required type="text"/>
@@ -593,12 +715,37 @@
         <textarea class="field-input font-body-md text-body-md resize-none" id="rsvp-message" name="message" placeholder="A note for the couple..." rows="2"></textarea>
       </div>
 
-      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-gold-deep text-white px-8 py-4 rounded-full font-label-caps text-label-caps tracking-widest uppercase hover:bg-gold-deep/90 transition-colors" type="submit">
-        <span class="material-symbols-outlined text-[18px]">chat</span>
-        Send RSVP via WhatsApp
+      <button class="mt-2 w-full flex items-center justify-center gap-3 bg-gold-deep text-white px-8 py-4 rounded-full font-label-caps text-label-caps tracking-widest uppercase hover:bg-gold-deep/90 transition-colors disabled:opacity-60" id="rsvp-submit" type="submit">
+        <span class="material-symbols-outlined text-[18px]">send</span>
+        <span id="rsvp-submit-label">Send RSVP</span>
       </button>
-      <p class="font-body-md text-body-md text-on-surface-variant/70 text-center text-sm -mt-2">This opens WhatsApp with your details pre-filled, ready to send to us.</p>
+      <p class="font-body-md text-body-md text-on-surface-variant/70 text-center text-sm -mt-2">Your reply comes straight to us. If it cannot be sent, WhatsApp steps in as a backup.</p>
     </form>
+
+    <!-- Shown once the RSVP is safely recorded -->
+    <div class="hidden" id="rsvp-success">
+      <div class="glass-panel rounded-2xl p-8 text-center">
+        <span class="material-symbols-outlined text-gold text-[40px]">check_circle</span>
+        <div class="font-headline-sm text-headline-sm text-gold mt-2 mb-3">Thank you</div>
+        <p class="font-body-md text-body-md text-on-surface-variant">Your RSVP has reached us. We cannot wait to celebrate with you.</p>
+        <a class="mt-6 inline-flex items-center gap-2 text-gold-deep font-label-caps text-label-caps tracking-widest uppercase" href="#" id="rsvp-wa-extra" rel="noopener" target="_blank">
+          <span class="material-symbols-outlined text-[18px]">chat</span>
+          Also message us on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Fallback. The guest taps this themselves, so WhatsApp is opened by a
+         real gesture and cannot be swallowed by a popup blocker. -->
+    <div class="hidden mt-6" id="rsvp-error">
+      <div class="glass-panel rounded-2xl p-6 text-center">
+        <p class="font-body-md text-body-md text-on-surface-variant mb-4">We could not send that just now. Tap below and your RSVP will reach us on WhatsApp instead.</p>
+        <a class="inline-flex items-center gap-2 bg-gold-deep text-white px-6 py-3 rounded-full font-label-caps text-label-caps tracking-widest uppercase" href="#" id="rsvp-wa-fallback" rel="noopener" target="_blank">
+          <span class="material-symbols-outlined text-[18px]">chat</span>
+          Send via WhatsApp
+        </a>
+      </div>
+    </div>
 
     <div class="reveal h-px w-16 bg-gold/45 mx-auto my-10"></div>
 
@@ -652,6 +799,10 @@
     <span class="material-symbols-outlined mb-1">location_on</span>
     <span class="font-label-caps text-label-caps text-[10px]">Venue</span>
   </a>
+  <a class="bottom-nav-link flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary transition-colors" data-target="gallery" href="#gallery">
+    <span class="material-symbols-outlined mb-1">photo_library</span>
+    <span class="font-label-caps text-label-caps text-[10px]">Gallery</span>
+  </a>
   <a class="bottom-nav-link flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary transition-colors" data-target="rsvp" href="#rsvp">
     <span class="material-symbols-outlined mb-1">mail</span>
     <span class="font-label-caps text-label-caps text-[10px]">RSVP</span>
@@ -664,6 +815,21 @@
     <span class="material-symbols-outlined text-[18px]">check_circle</span>
     <span id="toast-text">Copied!</span>
   </div>
+</div>
+
+<!-- Gallery viewer -->
+<div aria-hidden="true" aria-label="Photo viewer" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
+  <img alt="" class="lightbox-img" id="lightbox-img" src="data:,"/>
+  <button aria-label="Close" class="lightbox-btn lightbox-close" id="lightbox-close" type="button">
+    <span class="material-symbols-outlined">close</span>
+  </button>
+  <button aria-label="Previous photo" class="lightbox-btn lightbox-prev" id="lightbox-prev" type="button">
+    <span class="material-symbols-outlined">chevron_left</span>
+  </button>
+  <button aria-label="Next photo" class="lightbox-btn lightbox-next" id="lightbox-next" type="button">
+    <span class="material-symbols-outlined">chevron_right</span>
+  </button>
+  <div aria-live="polite" class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
 <!-- Entry Cover Overlay -->
@@ -793,7 +959,7 @@
 
   /* ---------- Active nav highlighting ---------- */
   function initActiveNav() {
-    const sections = ['hero', 'ceremony', 'venue', 'rsvp'].map(id => document.getElementById(id)).filter(Boolean);
+    const sections = ['hero', 'ceremony', 'venue', 'gallery', 'rsvp'].map(id => document.getElementById(id)).filter(Boolean);
     const bottomLinks = document.querySelectorAll('.bottom-nav-link');
     const drawerLinks = document.querySelectorAll('.nav-link');
     if (!sections.length) return;
@@ -928,6 +1094,84 @@
     });
   }
 
+  /* ---------- Gallery viewer ----------
+     Steps through the tiles in page order. Arrows, swipe and the keyboard
+     (left, right, Escape) all work, the page behind does not scroll while it is
+     open, and focus goes back to the tile that opened it on close. */
+  function initGallery() {
+    const tiles = Array.from(document.querySelectorAll('#gallery-grid .gallery-tile'));
+    const box = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const counter = document.getElementById('lightbox-counter');
+    if (!tiles.length || !box || !img) return;
+    const photos = tiles.map(t => { const i = t.querySelector('img'); return { src: i.src, alt: i.alt }; });
+    let index = 0, opener = null, swapTimer;
+
+    function show(i, animate) {
+      index = (i + photos.length) % photos.length;
+      const apply = () => {
+        img.src = photos[index].src;
+        img.alt = photos[index].alt;
+        counter.textContent = (index + 1) + ' / ' + photos.length;
+        img.classList.remove('swapping');
+      };
+      clearTimeout(swapTimer);
+      if (animate && !prefersReducedMotion()) {
+        img.classList.add('swapping');
+        swapTimer = setTimeout(apply, 180);
+      } else {
+        apply();
+      }
+      // Warm the neighbours so stepping through feels instant.
+      [index + 1, index - 1].forEach(n => { new Image().src = photos[(n + photos.length) % photos.length].src; });
+    }
+    function open(i) {
+      opener = document.activeElement;
+      show(i, false);
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+      document.documentElement.style.overflow = 'hidden';
+      document.getElementById('lightbox-close').focus();
+    }
+    function close() {
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+      document.documentElement.style.overflow = '';
+      if (opener && opener.focus) opener.focus();
+    }
+    const isOpen = () => box.classList.contains('open');
+
+    tiles.forEach((t, i) => t.addEventListener('click', () => open(i)));
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    document.getElementById('lightbox-prev').addEventListener('click', () => show(index - 1, true));
+    document.getElementById('lightbox-next').addEventListener('click', () => show(index + 1, true));
+    // A tap on the dark surround closes; a tap on the photo itself does not.
+    box.addEventListener('click', (e) => { if (e.target === box) close(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(index - 1, true);
+      else if (e.key === 'ArrowRight') show(index + 1, true);
+      else if (e.key === 'Tab') {
+        // Keep focus inside the viewer while it is open.
+        const f = Array.from(box.querySelectorAll('button'));
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // Swipe: a mostly horizontal drag of 50px or more steps the photo.
+    let sx = 0, sy = 0;
+    box.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    box.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - sx;
+      const dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(index + (dx < 0 ? 1 : -1), true);
+    }, { passive: true });
+  }
+
   /* ---------- Hero video ---------- */
   function initHeroVideo() {
     const v = document.getElementById('hero-video');
@@ -954,6 +1198,7 @@
     initCopyPhone();
     initGuestStepper();
     initRsvpForm();
+    initGallery();
   });
 })();
 </script>

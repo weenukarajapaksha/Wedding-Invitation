@@ -26,6 +26,7 @@ Just open `index.html` in a browser (double-click it, or drag it into a browser 
 ├── assets/
 │   ├── hero-video.mp4             # the hero video
 │   ├── venue.jpg                  # photo in the "Venue" section
+│   ├── gallery/                   # the six photos in the "Gallery" section
 │   ├── page-background.avif       # page backdrop photo
 │   ├── page-background.jpg        # same image, fallback for browsers without AVIF
 │   ├── couple-animation.lottie    # UNUSED, replaced by the hero video
@@ -68,12 +69,16 @@ roughly even in actual pixels.
 
 - Touch-to-unlock cover with an animated WebGL shader background
 - Animated couple in the hero, framed by an animated floral wreath
-- Full-page photographic backdrop behind everything
+- Photographic backdrop behind the page column
+- Gold accents throughout, with the couple's names set in Pinyon Script (Great
+  Vibes was dropped because its capital A closes into a loop that reads as a G)
 - Live countdown to the wedding date
 - "Add to Calendar" (.ics download)
 - "Get Directions" (opens the venue in Google Maps)
 - RSVP form that sends the reply straight to WhatsApp, pre-filled, addressed to
   whichever of the two RSVP contacts the guest picks
+- Photo gallery that opens full screen, with arrows, swipe and keyboard to step
+  through (see "The gallery" below)
 - Tap-to-call and copy-phone-number for both contacts
 - Fully responsive, works on both mobile and desktop
 
@@ -101,6 +106,47 @@ The image is supplied twice. AVIF is smaller, but iOS Safari before 16.4 cannot
 display it, so a JPEG is declared first and the AVIF upgrade is applied only
 where `image-set()` is understood. If you replace the backdrop, replace both
 files, keeping the same two names.
+
+### The gallery
+
+The photos live in `assets/gallery/`, and each one is a `<button class="gallery-tile ...">`
+in the `#gallery` section of `index.html`. The grid has six columns, and the
+size class on each tile decides its shape:
+
+| Class | Width | Shape | Suits |
+|---|---|---|---|
+| `tile-wide` | full row | 3:2 | landscape photos |
+| `tile-half` | half a row | 4:5 | portraits |
+| `tile-third` | a third of a row | 2:3 | portraits |
+
+The classes in a row should add up to a full row. To add a photo, drop it in
+the folder, copy a tile, and change its `src`, `alt` and `aria-label`. The
+viewer picks the new tile up automatically and steps through the tiles in page
+order. The tiles crop slightly toward the top, because the faces sit in the
+upper third of these portraits; the viewer always shows the whole photo.
+
+### Colour
+
+Three gold tokens are defined in the Tailwind config. Which one to use is a
+contrast decision, not a taste one:
+
+| Token | Hex | Use for |
+|---|---|---|
+| `gold` | `#a3822c` | Large type and hairlines only. About 3:1 on the page, which passes for large text but fails for small. |
+| `gold-deep` | `#735c00` | Small caps labels (5.3:1) and button fills with white text (6.4:1). |
+| `gold-light` | `#c9a227` | Spare, for highlights. |
+
+The page background is `#ebe9e4`, not the original near-white. It was chosen by
+measurement: the hero video's edge averages `#e3dcd3`, and with the backdrop
+photo contributing at 20% opacity, this body colour brings the area around the
+video to `#e2dcd3`. That is within half a unit per channel of the video, so the
+feathered edge blends invisibly instead of the video reading as a darker patch.
+If you change the video, re-measure rather than eyeballing it.
+
+There used to be an animated WebGL shader behind the page. It has been removed.
+It swung the whole page brightness by about 8% on a roughly 31 second cycle,
+which read as the page slowly breathing, and it was hidden under the backdrop
+photo anyway while still costing battery.
 
 ### Motion
 
